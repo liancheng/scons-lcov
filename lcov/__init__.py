@@ -24,12 +24,7 @@ def lcov_generator(source, target, env, for_signature):
     return ' '.join(Flatten(cmd))
 
 
-def lcov_emitter(source, target, env):
-    return (target, source)
-
-
-_lcov_builder = Builder(generator=lcov_generator,
-                        emitter=lcov_emitter)
+_lcov_builder = Builder(generator=lcov_generator)
 
 
 def generate(env):

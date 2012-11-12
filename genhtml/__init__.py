@@ -22,12 +22,7 @@ def genhtml_generator(source, target, env, for_signature):
     return ' '.join(Flatten(cmd))
 
 
-def genhtml_emitter(source, target, env):
-    return (target, source)
-
-
-_genhtml_builder = Builder(generator=genhtml_generator,
-                           emitter=genhtml_emitter)
+_genhtml_builder = Builder(generator=genhtml_generator)
 
 
 def generate(env):
