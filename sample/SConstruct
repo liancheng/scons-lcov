@@ -1,0 +1,17 @@
+env = Environment(tools=['default', 'lcov', 'genhtml'])
+
+hello_bin = env.Program(target='hello',
+                        source='hello.c',
+                        CFLAGS='-fprofile-arcs -ftest-coverage',
+                        LIBS='gcov')
+
+hello_run = env.Command(target='hello.gcda',
+                        source=hello_bin,
+                        action=hello_bin[0].abspath)
+
+env.GenHtml(target=env.Dir('html'),
+            source=env.LCov(target='coverage.info',
+                            source=hello_run,
+                            LCOVDIR='#/'))
+
+env.Clean(hello_bin, ['hello.gcno', 'html'])
