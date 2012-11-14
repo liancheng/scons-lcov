@@ -21,6 +21,9 @@ def lcov_generator(source, target, env, for_signature):
     if 'LCOVDIR' in env:
         cmd += ['--directory', str(Dir(env['LCOVDIR']))]
 
+    if 'LCOVBASEDIR' in env:
+        cmd += ['--base-directory', str(Dir(env['LCOVBASEDIR']))]
+
     return ' '.join(Flatten(cmd))
 
 
